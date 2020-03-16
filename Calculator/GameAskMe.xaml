@@ -1,0 +1,61 @@
+﻿<Window x:Class="Calculator.GameAskMe"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Calculator"
+        mc:Ignorable="d"
+        Title="GameAskMe" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300*"/>
+            <ColumnDefinition Width="200*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="100*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <LinearGradientBrush.GradientStops>
+                    <GradientStop Offset="1" Color="Aquamarine"/>
+                    <GradientStop Offset="0.299" Color="CadetBlue"/>
+                </LinearGradientBrush.GradientStops>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <TextBox Name="txtQuestion"
+                 HorizontalAlignment="Stretch"
+                 VerticalAlignment="Stretch"
+                 Margin="10"
+                 TextWrapping="Wrap"
+                 FontFamily="Verdana"
+                 FontSize="20"
+                 Grid.Row="0"
+                 Foreground="BlueViolet"
+                 Text="Enter your questions:"/>
+        <Button HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Margin="10,0,0,0"
+                Padding="5"
+                Grid.Row="1"
+                Content="Answear"
+                Click="Button_Click"
+                IsDefault="True"/>
+        <TextBox Name="txtAnswer"
+                 HorizontalAlignment="Stretch"
+                 VerticalAlignment="Stretch"
+                 Margin="10"
+                 Grid.Row="2"
+                 TextWrapping="Wrap"
+                 FontFamily="Verdana"
+                 FontSize="20"
+                 IsReadOnly="True"
+                 Foreground="DarkCyan"
+                 Text="Answer on question"
+                 Grid.ColumnSpan="2"/>
+    </Grid>
+</Window>
