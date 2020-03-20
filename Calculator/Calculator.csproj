@@ -58,7 +58,7 @@
     <Compile Include="2Rectangle.xaml.cs">
       <DependentUpon>2Rectangle.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ConsoleTextEditor.cs" />
+    <Compile Include="StringEditor.cs" />
     <Compile Include="GameAskMe.xaml.cs">
       <DependentUpon>GameAskMe.xaml</DependentUpon>
     </Compile>

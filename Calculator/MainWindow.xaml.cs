@@ -1,7 +1,6 @@
 ﻿
 using System.Collections.Generic;
 using System.Windows;
-using System.Linq;
 
 
 namespace Calculator
@@ -22,10 +21,10 @@ namespace Calculator
         public MainWindow()
         {
             InitializeComponent();
-        }         
+        }
 
         private void btn_1_Click(object sender, RoutedEventArgs e)
-        {            
+        {
             AddSymbolOnConsole("1");
         }
 
@@ -101,53 +100,26 @@ namespace Calculator
 
         private void btn_delete_Click(object sender, RoutedEventArgs e)
         {
-            var indexOfLastChar = txtConsole.Text.Length - 1;
-            if (indexOfLastChar >= 0)
-            {
-                txtConsole.Text = txtConsole.Text.Remove(indexOfLastChar, 1);
-            }
+            txtConsole.Text = StringEditor.GetTextWithOutLastSymbol(txtConsole.Text);
         }
 
-        private void btn_equal_Click(object sender, RoutedEventArgs e)
+        private void btn_result_Click(object sender, RoutedEventArgs e)
         {
-           
+
         }
 
         private void AddSymbolOnConsole(string symbol)
         {
-            if (NumbersChar.Contains(symbol))
-            {
-                txtConsole.Text += symbol;
-            }
-            else if (ActionSymbols.Contains(symbol) && )
-            {
 
-            }
-            txtConsole.Text += symbol;
+            txtConsole.Text = StringEditor.AddSymbol(txtConsole.Text, symbol);
+
         }
 
-        private int GetLastSymbolIndex()
-        {
-            return txtConsole.Text.Length - 1;
-        }
 
-        public string GetLastSymbol()
-        {
-            var index = GetLastSymbolIndex();
-            if(index < 0)
-            {
-                return null;
-            }
-            else
-            {
-                return txtConsole.Text.Substring(index, 1);
-            }
-            
-        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-           
+
         }
     }
 }
