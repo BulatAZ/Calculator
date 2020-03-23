@@ -67,9 +67,9 @@ namespace Calculator
 
         public static string AddAction(string text, string symbol)
         {
-            if (text.Length < 1)
+            if (string.IsNullOrWhiteSpace(text))
             {
-                return string.Empty; 
+                return text; 
             }
             var lastSymbol = GetLastSymbol(text);
             if (IsAction(lastSymbol))
@@ -82,6 +82,22 @@ namespace Calculator
                 text += symbol;
             }
             return text;
+        }
+        public static string DeleteLastSymbol(string text)
+        {
+            return text.Remove(text.Length - 1, 1);            
+        }
+
+        public static int Calculate(string text)
+        {
+            var result = 0;
+
+
+
+
+
+
+            return result;
         }
 
     }
