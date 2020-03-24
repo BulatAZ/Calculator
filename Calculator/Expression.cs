@@ -1,30 +1,32 @@
-﻿
-namespace Calculator
+﻿namespace Calculator
 {
-    public class InputExpression
+    public class Expression
     {
-        public string Text { get; set; }
+        public string Text { get; set; }    
 
         public bool IsEmpty => string.IsNullOrWhiteSpace(Text);
 
         public int LastSymbolIndex => Text.Length - 1;
 
-        public string LastSymbol
+        public char? LastSymbol
         {
             get
             {
                 if (!IsEmpty)
                 {
-                    return Text.Substring(LastSymbolIndex, 1); 
+                    return Text[LastSymbolIndex];
                 }
                 else
                 {
                     return null;
                 }
-                  
             }
         }
-       
 
+        public Expression(string text)
+        {
+            Text = text;
+        }
+               
     }
 }

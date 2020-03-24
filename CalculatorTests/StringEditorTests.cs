@@ -6,12 +6,13 @@ namespace Calculator.Tests
     [TestClass()]
     public class StringEditorTests
     {
-        [TestMethod()]
-        
+        [TestMethod()]        
         public void IsAction_WhenActionSymbol()
         {
+            
 
-            var result = StringEditor.IsAction("+");
+            //Action
+            var result = ExpressionEditor.IsAction('+');
 
             //Assert
             Assert.AreEqual(true, result);
