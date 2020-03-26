@@ -68,7 +68,7 @@
     <Compile Include="CalculateExpression.cs" />
     <Compile Include="ControlsTextEditor.cs" />
     <Compile Include="ExpressionEditor.cs" />
-    <Compile Include="IGetCalculateResult.cs" />
+    <Compile Include="ICalculate.cs" />
     <Compile Include="Expression.cs" />
     <Compile Include="GameAskMe.xaml.cs">
       <DependentUpon>GameAskMe.xaml</DependentUpon>

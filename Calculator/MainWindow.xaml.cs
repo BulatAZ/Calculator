@@ -10,7 +10,7 @@ namespace Calculator
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+        private ICalculate calc = new CalculateExpression();
         public MainWindow()
         {
             InitializeComponent();
@@ -98,7 +98,7 @@ namespace Calculator
 
         private void btn_result_Click(object sender, RoutedEventArgs e)
         {
-
+            txtConsole.Text = calc.GetResult(txtConsole.Text).ToString();
         }
 
         private void AddSymbolOnConsole(char symbol)
