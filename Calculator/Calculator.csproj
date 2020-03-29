@@ -73,6 +73,7 @@
     <Compile Include="GameAskMe.xaml.cs">
       <DependentUpon>GameAskMe.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IEditTextBox.cs" />
     <Compile Include="Regtangles.xaml.cs">
       <DependentUpon>Regtangles.xaml</DependentUpon>
     </Compile>

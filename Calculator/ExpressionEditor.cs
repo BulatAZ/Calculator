@@ -4,16 +4,16 @@ namespace Calculator
 {
     public static class ExpressionEditor
     {
-        private static readonly List<char> Numbers = new List<char>
+        private static readonly List<string> Numbers = new List<string>
         {
-            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
+            "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"
         };
-        private static readonly List<char> ActionSymbols = new List<char>
+        private static readonly List<string> ActionSymbols = new List<string>
         {
-            '-', '+', '*', '/'
+            "-", "+", "*", "/"
         };
 
-        public static string AddSymbol(string text, char symbol)
+        public static string AddSymbol(string text, string symbol)
         {
             var exp = new Expression(text);
 
@@ -28,36 +28,36 @@ namespace Calculator
 
             return exp.Text;
         }
-        public static bool IsNumber(char symbol)
+        public static bool IsNumber(string symbol)
         {
             return Numbers.Contains(symbol);
         }
-        public static bool IsAction(char? symbol)
+        public static bool IsAction(string symbol)
         {
-            if (!symbol.HasValue)
+            if (string.IsNullOrWhiteSpace(symbol))
             {
                 return false;
             }
             else
             {
-                return ActionSymbols.Contains(symbol.Value);
+                return ActionSymbols.Contains(symbol);
             }
         }
-        public static void AddNumber(Expression exp, char symbol)
+        public static void AddNumber(Expression exp, string symbol)
         {
             if (exp != null)
             {
                 exp.Text += symbol;
             }           
         }
-        public static void AddAction(Expression exp, char symbol)
+        public static void AddAction(Expression exp, string symbol)
         {
             if (exp == null || exp.IsEmpty)
             {
                 return;
             }
            
-            else if (IsAction(exp.LastSymbol))
+            else if (IsAction(exp.LastSymbol?.ToString()))
             {
                 DeleteLastSymbol(exp);
                 exp.Text += symbol;

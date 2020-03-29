@@ -1,19 +1,17 @@
-﻿
-
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace Calculator
 {
-    public static class ControlsTextEditor
-    {
-        public static void AddSymbolToText(TextBox textbox, char symbol)
+    public class ControlsTextEditor : IEditTextBox
+    {     
+        public void AddSymbolToText(TextBox textbox, string symbol)
         {
             if(textbox != null)
             {
                 textbox.Text = ExpressionEditor.AddSymbol(textbox.Text, symbol);
             }                      
         }
-        public static void DeleteLastSymbol(TextBox textbox)
+        public void DeleteLastSymbol(TextBox textbox)
         {
             if (textbox != null)
             {
@@ -22,5 +20,7 @@ namespace Calculator
                 textbox.Text = exp.Text;
             }
         }
+
+
     }
 }
