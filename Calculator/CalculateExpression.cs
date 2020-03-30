@@ -4,39 +4,54 @@ using System.Collections.Generic;
 namespace Calculator
 {
     public class CalculateExpression : ICalculate
-    {
-        /// <summary>
-        /// ActionSymbol - AS
-        /// </summary>
-        public static List<char> ActionSymbol = new List<char>()
+    {       
+        private readonly List<char> ActionSymbol = new List<char>()
         {
             '/','*','+','-'
         };
         public int GetResult(string expression)
         {
-            
+            if (string.IsNullOrWhiteSpace(expression))
+            {
+                return 0;
+            }
             foreach (var act in ActionSymbol)
             {
                 var actId = expression.IndexOf(act);
                 while (actId > -1)
                 {
                     expression = GetChangedExp(expression, actId, act);
+                    if (IsFinish(expression))
+                    {
+                        break;
+                    }
                     actId = expression.IndexOf(act);
-                    Console.WriteLine(expression);
+                    
                 }
             }
-
-
-            return Int32.Parse(expression);
+            
+            if(Int32.TryParse(expression, out int result))
+            {
+                return result;
+            }
+            else
+            {
+                //TO DO: write to log
+                return 0;
+            }            
         }
         
-        public static string GetLeftNumber(string exp, int index)
+        public string GetLeftNumber(string exp, int index)
         {
             var ddd = exp.Remove(index);
-            return ddd.Substring(GetLastASIndex(ddd) + 1);
+            return ddd.Substring(GetLastActSymIndex(ddd) + 1);
         }
-        public static int GetLastASIndex(string exp)
+        public int GetLastActSymIndex(string exp)
         {
+            if(exp == null)
+            {
+                return -1;
+            }
             int lastIndex = -1;
             foreach (var ch in ActionSymbol)
             {
@@ -48,12 +63,15 @@ namespace Calculator
             }
             return lastIndex;
         }
-
-        public static string GetRightNumber(string exp, int index)
+        public string GetRightNumber(string exp, int index)
         {
+            if(exp == null)
+            {
+                return null;
+            }
             var dd = exp.Substring(index + 1);
-            var ind = GetFirstASInd(dd);
-            if (ind == dd.Length)
+            var ind = GetFirstActSymIndex(dd);
+            if (ind == dd.Length || ind == -1)
             {
                 return dd;
             }
@@ -62,13 +80,13 @@ namespace Calculator
                 return dd.Remove(ind);
             }
         }
-        public static int GetFirstASInd(string exp)
+        public int GetFirstActSymIndex(string exp)
         {
             var firstIndex = exp.Length;
             foreach (var ch in ActionSymbol)
             {
                 var ind = exp.IndexOf(ch);
-                if (ind < firstIndex && ind > 0)
+                if (ind < firstIndex && ind != -1)
                 {
                     firstIndex = ind;
                 }
@@ -76,36 +94,61 @@ namespace Calculator
             return firstIndex;
 
         }
-
-        public static string GetChangedExp(string exp, int startindex, char act)
+        public string GetChangedExp(string exp, int startindex, char act)
         {
+            if (string.IsNullOrWhiteSpace(exp))
+            {
+                return exp;
+            }
             var firstNumber = GetLeftNumber(exp, startindex);
             var secondNumber = GetRightNumber(exp, startindex);
+            if(string.IsNullOrWhiteSpace(firstNumber) || string.IsNullOrWhiteSpace(secondNumber))
+            {
+                return exp;
+            }
             var calcResult = GetCalcResult(firstNumber, secondNumber, act);
             return exp.Replace(firstNumber + act + secondNumber, calcResult.ToString());
 
 
         }
-        public static int GetCalcResult(string firstNumber, string secondNumber, char act)
+        public int GetCalcResult(string firstNumber, string secondNumber, char act)
         {
-            var first = Int32.Parse(firstNumber);
-            var second = Int32.Parse(secondNumber);
-            switch (act)
+            if(Int32.TryParse(firstNumber, out int first) && Int32.TryParse(secondNumber, out int second))
             {
-                case '+':
-                    return first + second;
-                case '-':
-                    return first - second;
-                case '/':
-                    return first / second;
-                case '*':
-                    return first * second;
-                default:
-                    return 0;
+                switch (act)
+                {
+                    case '+':
+                        return first + second;
+                    case '-':
+                        return first - second;
+                    case '/':
+                        return first / second;
+                    case '*':
+                        return first * second;
+                    default:
+                        return 0;
 
+                }
             }
+            else
+            {
+                //TODO write to log
+                return 0;
+            }
+        }
 
-
+        public bool IsFinish(string exp)
+        {
+            var lastActIndex = GetLastActSymIndex(exp);
+            var firstActIndex = GetFirstActSymIndex(exp);
+            if(lastActIndex == firstActIndex)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

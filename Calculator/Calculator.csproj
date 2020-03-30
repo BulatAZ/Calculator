@@ -68,12 +68,12 @@
     <Compile Include="CalculateExpression.cs" />
     <Compile Include="ControlsTextEditor.cs" />
     <Compile Include="ExpressionEditor.cs" />
-    <Compile Include="ICalculate.cs" />
+    <Compile Include="Interfaces\ICalculate.cs" />
     <Compile Include="Expression.cs" />
     <Compile Include="GameAskMe.xaml.cs">
       <DependentUpon>GameAskMe.xaml</DependentUpon>
     </Compile>
-    <Compile Include="IEditTextBox.cs" />
+    <Compile Include="Interfaces\IEditTextBox.cs" />
     <Compile Include="Regtangles.xaml.cs">
       <DependentUpon>Regtangles.xaml</DependentUpon>
     </Compile>
