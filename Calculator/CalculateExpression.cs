@@ -20,6 +20,11 @@ namespace Calculator
                 var actId = expression.IndexOf(act);
                 while (actId > -1)
                 {
+                    if(actId == 0)
+                    {
+                        var dd = expression.Substring(1);
+                        actId = dd.IndexOf(act)+1;
+                    }
                     expression = GetChangedExp(expression, actId, act);
                     if (IsFinish(expression))
                     {
@@ -43,8 +48,21 @@ namespace Calculator
         
         public string GetLeftNumber(string exp, int index)
         {
+            if(string.IsNullOrWhiteSpace(exp))
+            {
+                return null;
+            }
             var ddd = exp.Remove(index);
-            return ddd.Substring(GetLastActSymIndex(ddd) + 1);
+            var lastAcrSymIndex = GetLastActSymIndex(ddd);
+            if (lastAcrSymIndex == 0)
+            {
+                return ddd;
+            }
+            else
+            {
+                return ddd.Substring(GetLastActSymIndex(ddd) + 1);
+            }
+                
         }
         public int GetLastActSymIndex(string exp)
         {

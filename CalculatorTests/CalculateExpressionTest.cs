@@ -14,6 +14,7 @@ namespace CalculatorTests
         //[DataRow("5*7/5", 7)] // TO DO
         [DataRow("50-7+3", 40)]
         [DataRow("5-8", -3)]
+        [DataRow("-5-8", -13)]
 
         public void GetResult_CompareCalculatedResult_ReturnEqualResult(string expression, int result)
         {
