@@ -72,7 +72,7 @@ namespace Calculator
         {
             if (exp != null && !exp.IsEmpty)            
             {
-                exp.Text = exp.Text.Remove(exp.LastSymbolIndex, 1);
+                exp.Text = exp.Text.Remove(exp.LastSymbolIndex,1);
             }
         }
     }
