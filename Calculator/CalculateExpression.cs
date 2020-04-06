@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace Calculator
 {
-    public class CalculateExpression : ICalculate
+    public class CalculateExpression : ICalculate<float>
     {       
         private readonly List<char> ActionSymbol = new List<char>()
         {
             '/','*','+','-'
         };
-        public int GetResult(string expression)
+        public float GetResult(string expression)
         {
             if (string.IsNullOrWhiteSpace(expression))
             {
@@ -35,14 +35,14 @@ namespace Calculator
                 }
             }
             
-            if(Int32.TryParse(expression, out int result))
+            if(float.TryParse(expression, out float result))
             {
                 return result;
             }
             else
             {
                 //TO DO: write to log
-                return 0;
+                return -1;
             }            
         }
         
@@ -100,6 +100,10 @@ namespace Calculator
         }
         public int GetFirstActSymIndex(string exp)
         {
+            if (string.IsNullOrWhiteSpace(exp))
+            {
+                return -1;
+            }
             var firstIndex = exp.Length;
             foreach (var ch in ActionSymbol)
             {
@@ -125,13 +129,16 @@ namespace Calculator
                 return exp;
             }
             var calcResult = GetCalcResult(firstNumber, secondNumber, act);
-            return exp.Replace(firstNumber + act + secondNumber, calcResult.ToString());
+            return exp.Replace(firstNumber + act + secondNumber, calcResult.ToString(".##"));
 
 
         }
-        public int GetCalcResult(string firstNumber, string secondNumber, char act)
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "<Pending>")]
+        public float GetCalcResult(string firstNumber, string secondNumber, char act)
         {
-            if(Int32.TryParse(firstNumber, out int first) && Int32.TryParse(secondNumber, out int second))
+
+            if(float.TryParse(firstNumber, out float first) && float.TryParse(secondNumber, out float second))
             {
                 switch (act)
                 {
@@ -151,7 +158,7 @@ namespace Calculator
             else
             {
                 //TODO write to log
-                return 0;
+                return -1;
             }
         }
 

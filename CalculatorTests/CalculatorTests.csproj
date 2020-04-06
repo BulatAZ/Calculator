@@ -64,9 +64,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Calculator\Calculator.csproj">
+    <ProjectReference Include="..\Calculator\DesktopApp.csproj">
       <Project>{6331397C-1F85-4B73-9CE0-7BD203815DF2}</Project>
-      <Name>Calculator</Name>
+      <Name>DesktopApp</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

@@ -11,15 +11,16 @@ namespace CalculatorTests
         [DataRow("5+7", 12)]
         [DataRow("5+7*8", 61)]
         [DataRow("5+7/7", 6)]
-        //[DataRow("5*7/5", 7)] // TO DO
+        [DataRow("5*7/5", 7)]
         [DataRow("50-7+3", 40)]
         [DataRow("5-8", -3)]
         [DataRow("-5-8", -13)]
+        [DataRow("-3/2", -1.5f)]
 
-        public void GetResult_CompareCalculatedResult_ReturnEqualResult(string expression, int result)
+        public void GetResult_CompareCalculatedResult_ReturnEqualResult(string expression, float result)
         {
             //Arrange
-            ICalculate calc = new CalculateExpression();
+            ICalculate<float> calc = new CalculateExpression();
 
             //Action
             var calculatedResult = calc.GetResult(expression);
@@ -34,7 +35,7 @@ namespace CalculatorTests
         public void GetResult_WhenExpressionIsNull_ReturnZero(string expression)
         {
             //Arrange
-            ICalculate calc = new CalculateExpression();
+            ICalculate<float> calc = new CalculateExpression();
 
             //Action
             var calculatedResult = calc.GetResult(expression);

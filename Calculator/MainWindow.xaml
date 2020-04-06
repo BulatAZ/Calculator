@@ -26,6 +26,6 @@
         <Button Content="AC" Name="btn_AC" HorizontalAlignment="Left" Margin="18,197,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="btn_AC_Click"/>
         <Button Content="Del" Name="btn_delete" HorizontalAlignment="Left" Margin="88,197,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="btn_delete_Click"/>
         <Button Content="=" Name="btn_equal" HorizontalAlignment="Left" Margin="158,197,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="btn_result_Click"/>
-        <Button Content="nextWindow" HorizontalAlignment="Left" Margin="142,10,0,0" VerticalAlignment="Top" Width="91"/>
+        <Button Content="nextWindow" HorizontalAlignment="Left" Margin="142,10,0,0" VerticalAlignment="Top" Width="91" Click="Button_Click_1"/>
     </Grid>
 </Window>

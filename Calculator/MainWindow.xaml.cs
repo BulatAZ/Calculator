@@ -10,7 +10,7 @@ namespace Calculator
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly ICalculate Calc = new CalculateExpression();
+        private readonly ICalculate<float> Calc = new CalculateExpression();
         private readonly IEditTextBox TextBoxEditor = new ControlsTextEditor();
         public MainWindow()
         {
@@ -48,6 +48,11 @@ namespace Calculator
             }
             TextBoxEditor.AddSymbolToText(txtConsole, btn.Content.ToString());
         }
-        
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            var dd = new GameAskMe();
+            dd.Show();
+        }
     }
 }
