@@ -1,5 +1,5 @@
 ﻿
-namespace Calculator
+namespace DesktopApp
 {
     public interface ICalculate <T>
     {

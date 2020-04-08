@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace Calculator
+namespace CalculatorAPI
 {
-    public class CalculateExpression : ICalculate<float>
+    public class CalculateExpression
     {       
         private readonly List<char> ActionSymbol = new List<char>()
         {

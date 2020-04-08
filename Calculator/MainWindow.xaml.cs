@@ -1,16 +1,17 @@
 ﻿
+using DesktopApp.APIConnectors;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Calculator
+namespace DesktopApp
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly ICalculate<float> Calc = new CalculateExpression();
+        private readonly ICalculate<float> Calc = new Calculator();
         private readonly IEditTextBox TextBoxEditor = new ControlsTextEditor();
         public MainWindow()
         {

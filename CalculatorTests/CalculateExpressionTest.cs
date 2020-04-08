@@ -1,5 +1,4 @@
-﻿using System;
-using Calculator;
+﻿using CalculatorAPI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CalculatorTests
@@ -16,11 +15,13 @@ namespace CalculatorTests
         [DataRow("5-8", -3)]
         [DataRow("-5-8", -13)]
         [DataRow("-3/2", -1.5f)]
+        //[DataRow("5-1-4", 0)]
+        //[DataRow("5-1-5", -1)]
 
         public void GetResult_CompareCalculatedResult_ReturnEqualResult(string expression, float result)
         {
             //Arrange
-            ICalculate<float> calc = new CalculateExpression();
+            var calc = new CalculateExpression();
 
             //Action
             var calculatedResult = calc.GetResult(expression);
@@ -35,7 +36,7 @@ namespace CalculatorTests
         public void GetResult_WhenExpressionIsNull_ReturnZero(string expression)
         {
             //Arrange
-            ICalculate<float> calc = new CalculateExpression();
+           var calc = new CalculateExpression();
 
             //Action
             var calculatedResult = calc.GetResult(expression);

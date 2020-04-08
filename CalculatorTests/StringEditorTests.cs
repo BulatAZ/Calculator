@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 
-namespace Calculator.Tests
+namespace DesktopApp.Tests
 {
     [TestClass()]
     public class StringEditorTests
