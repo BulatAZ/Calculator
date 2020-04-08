@@ -128,7 +128,8 @@ namespace CalculatorAPI
                 return exp;
             }
             var calcResult = GetCalcResult(firstNumber, secondNumber, act);
-            return exp.Replace(firstNumber + act + secondNumber, calcResult.ToString(".##"));
+
+            return exp.Replace(firstNumber + act + secondNumber, NumberToString(calcResult));
 
 
         }
@@ -161,11 +162,23 @@ namespace CalculatorAPI
             }
         }
 
+        private string NumberToString(float number)
+        {
+            if(number == 0)
+            {
+                return "0";
+            }
+            else
+            {
+                return number.ToString(".##");
+            }
+        }
+
         public bool IsFinish(string exp)
         {
             var lastActIndex = GetLastActSymIndex(exp);
             var firstActIndex = GetFirstActSymIndex(exp);
-            if(lastActIndex == firstActIndex)
+            if(lastActIndex == firstActIndex && firstActIndex == 0)
             {
                 return true;
             }

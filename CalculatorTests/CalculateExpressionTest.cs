@@ -15,8 +15,8 @@ namespace CalculatorTests
         [DataRow("5-8", -3)]
         [DataRow("-5-8", -13)]
         [DataRow("-3/2", -1.5f)]
-        //[DataRow("5-1-4", 0)]
-        //[DataRow("5-1-5", -1)]
+        [DataRow("5-1-4", 0)]
+        [DataRow("5-1-5", -1)]
 
         public void GetResult_CompareCalculatedResult_ReturnEqualResult(string expression, float result)
         {
