@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Calculator
+namespace DesktopApp
 {
     public static class ExpressionEditor
     {

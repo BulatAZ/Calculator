@@ -11,8 +11,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{6331397C-1F85-4B73-9CE0-7BD203815DF2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Calculator</RootNamespace>
-    <AssemblyName>Calculator</AssemblyName>
+    <RootNamespace>DesktopApp</RootNamespace>
+    <AssemblyName>DesktopApp</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -65,15 +65,15 @@
     <Compile Include="2Rectangle.xaml.cs">
       <DependentUpon>2Rectangle.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CalculateExpression.cs" />
+    <Compile Include="APIConnectors\Calculator.cs" />
     <Compile Include="ControlsTextEditor.cs" />
     <Compile Include="ExpressionEditor.cs" />
-    <Compile Include="Interfaces\ICalculate.cs" />
+    <Compile Include="APIConnectors\Interfaces\ICalculate.cs" />
     <Compile Include="Expression.cs" />
     <Compile Include="GameAskMe.xaml.cs">
       <DependentUpon>GameAskMe.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\IEditTextBox.cs" />
+    <Compile Include="APIConnectors\Interfaces\IEditTextBox.cs" />
     <Compile Include="Regtangles.xaml.cs">
       <DependentUpon>Regtangles.xaml</DependentUpon>
     </Compile>
@@ -139,6 +139,12 @@
     <Analyzer Include="..\packages\Microsoft.NetCore.Analyzers.2.9.8\analyzers\dotnet\cs\Microsoft.NetCore.CSharp.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.9.8\analyzers\dotnet\cs\Microsoft.NetFramework.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.9.8\analyzers\dotnet\cs\Microsoft.NetFramework.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CalculatorAPI\CalculatorAPI.csproj">
+      <Project>{cc36308e-36af-406d-a2c9-7625dfff59c5}</Project>
+      <Name>CalculatorAPI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

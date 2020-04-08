@@ -64,8 +64,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CalculatorAPI\CalculatorAPI.csproj">
+      <Project>{cc36308e-36af-406d-a2c9-7625dfff59c5}</Project>
+      <Name>CalculatorAPI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Calculator\DesktopApp.csproj">
-      <Project>{6331397C-1F85-4B73-9CE0-7BD203815DF2}</Project>
+      <Project>{6331397c-1f85-4b73-9ce0-7bd203815df2}</Project>
       <Name>DesktopApp</Name>
     </ProjectReference>
   </ItemGroup>

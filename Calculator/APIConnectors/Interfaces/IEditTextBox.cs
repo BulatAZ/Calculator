@@ -1,7 +1,7 @@
 ﻿
 using System.Windows.Controls;
 
-namespace Calculator
+namespace DesktopApp
 {
     public interface IEditTextBox
     {

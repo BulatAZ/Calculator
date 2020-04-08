@@ -1,4 +1,4 @@
-﻿namespace Calculator
+﻿namespace DesktopApp
 {
     public class Expression
     {
