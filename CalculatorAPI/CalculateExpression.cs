@@ -4,7 +4,7 @@ namespace CalculatorAPI
 {
     public class CalculateExpression
     {       
-        private readonly List<char> ActionSymbol = new List<char>()
+        private readonly List<char> ActionSymbols = new List<char>()
         {
             '/','*','+','-'
         };
@@ -14,27 +14,10 @@ namespace CalculatorAPI
             {
                 return 0;
             }
-            foreach (var act in ActionSymbol)
-            {
-                var actId = expression.IndexOf(act);
-                while (actId > -1)
-                {
-                    if(actId == 0)
-                    {
-                        var dd = expression.Substring(1);
-                        actId = dd.IndexOf(act)+1;
-                    }
-                    expression = GetChangedExp(expression, actId, act);
-                    if (IsFinish(expression))
-                    {
-                        break;
-                    }
-                    actId = expression.IndexOf(act);
-                    
-                }
-            }
-            
-            if(float.TryParse(expression, out float result))
+
+            expression = GetCalculatedExpression(expression);          
+
+            if (float.TryParse(expression, out float result))
             {
                 return result;
             }
@@ -44,103 +27,122 @@ namespace CalculatorAPI
                 return -1;
             }            
         }
-        
-        public string GetLeftNumber(string exp, int index)
+        public string GetCalculatedExpression(string exp)
+        {
+            foreach (var action in ActionSymbols)
+            {
+                var actionInd = exp.IndexOf(action);
+                while (actionInd > -1)
+                {
+                    if (actionInd == 0)
+                    {
+                        var subExp = exp.Substring(1);
+                        actionInd = subExp.IndexOf(action) + 1;
+                    }
+                    exp = GetExpWithCalculatingOneOperation(exp, actionInd);
+                    if (IsCalculatingFinish(exp))
+                    {
+                        break;
+                    }
+                    actionInd = exp.IndexOf(action);
+                }
+            }
+            return exp;
+        }
+        public string GetExpWithCalculatingOneOperation(string expression, int actionInd)
+        {
+            if (string.IsNullOrWhiteSpace(expression))
+            {
+                return expression;
+            }
+            var leftNumber = GetLeftNumber(expression, actionInd);
+            var rightNumber = GetRightNumber(expression, actionInd);
+            if (string.IsNullOrWhiteSpace(leftNumber) || string.IsNullOrWhiteSpace(rightNumber))
+            {
+                return expression;
+            }
+            var actionSymbol = expression[actionInd];
+            var calcResult = GetCalcResult(leftNumber, rightNumber, actionSymbol);
+
+            return expression.Replace(leftNumber + actionSymbol + rightNumber, NumberToString(calcResult));
+        }
+        public string GetLeftNumber(string exp, int actionInd)
         {
             if(string.IsNullOrWhiteSpace(exp))
             {
                 return null;
             }
-            var ddd = exp.Remove(index);
-            var lastAcrSymIndex = GetLastActSymIndex(ddd);
-            if (lastAcrSymIndex == 0)
+            var leftPartOfExpression = exp.Remove(actionInd);
+            var startIndexOfLastNumber = GetStartIndexOfLastNumber(leftPartOfExpression);
+            if (startIndexOfLastNumber == 0)
             {
-                return ddd;
+                return leftPartOfExpression;
             }
             else
             {
-                return ddd.Substring(GetLastActSymIndex(ddd) + 1);
-            }
-                
+                return leftPartOfExpression.Substring(startIndexOfLastNumber + 1);
+            }               
         }
-        public int GetLastActSymIndex(string exp)
+        public int GetStartIndexOfLastNumber(string exp)
         {
             if(exp == null)
             {
                 return -1;
             }
-            int lastIndex = -1;
-            foreach (var ch in ActionSymbol)
+            int actionSymbolIndexInFrontOfLastNumber = -1;
+            foreach (var symbol in ActionSymbols)
             {
-                var ind = exp.LastIndexOf(ch);
-                if (ind > lastIndex)
+                var index = exp.LastIndexOf(symbol);
+                if (index > actionSymbolIndexInFrontOfLastNumber)
                 {
-                    lastIndex = ind;
+                    actionSymbolIndexInFrontOfLastNumber = index;
                 }
             }
-            return lastIndex;
+            return actionSymbolIndexInFrontOfLastNumber;
         }
-        public string GetRightNumber(string exp, int index)
+        public string GetRightNumber(string exp, int actionInd)
         {
             if(exp == null)
             {
                 return null;
             }
-            var dd = exp.Substring(index + 1);
-            var ind = GetFirstActSymIndex(dd);
-            if (ind == dd.Length || ind == -1)
+            var rightPartOfExpression = exp.Substring(actionInd + 1);
+            var endIndexOfFirstNumber = GetEndIndexOfFirstNumber(rightPartOfExpression);
+            if (endIndexOfFirstNumber == rightPartOfExpression.Length || endIndexOfFirstNumber == -1)
             {
-                return dd;
+                return rightPartOfExpression;
             }
             else
             {
-                return dd.Remove(ind);
+                return rightPartOfExpression.Remove(endIndexOfFirstNumber);
             }
         }
-        public int GetFirstActSymIndex(string exp)
+        public int GetEndIndexOfFirstNumber(string exp)
         {
             if (string.IsNullOrWhiteSpace(exp))
             {
                 return -1;
             }
-            var firstIndex = exp.Length;
-            foreach (var ch in ActionSymbol)
+            var EndIndexOfFirstNumber = exp.Length;
+            foreach (var ch in ActionSymbols)
             {
-                var ind = exp.IndexOf(ch);
-                if (ind < firstIndex && ind != -1)
+                var index = exp.IndexOf(ch);
+                if (index < EndIndexOfFirstNumber && index != -1)
                 {
-                    firstIndex = ind;
+                    EndIndexOfFirstNumber = index;
                 }
             }
-            return firstIndex;
+            return EndIndexOfFirstNumber;
 
-        }
-        public string GetChangedExp(string exp, int startindex, char act)
-        {
-            if (string.IsNullOrWhiteSpace(exp))
-            {
-                return exp;
-            }
-            var firstNumber = GetLeftNumber(exp, startindex);
-            var secondNumber = GetRightNumber(exp, startindex);
-            if(string.IsNullOrWhiteSpace(firstNumber) || string.IsNullOrWhiteSpace(secondNumber))
-            {
-                return exp;
-            }
-            var calcResult = GetCalcResult(firstNumber, secondNumber, act);
-
-            return exp.Replace(firstNumber + act + secondNumber, NumberToString(calcResult));
-
-
-        }
+        }       
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "<Pending>")]
-        public float GetCalcResult(string firstNumber, string secondNumber, char act)
+        public float GetCalcResult(string leftNumber, string rightNumber, char actionSymbol)
         {
 
-            if(float.TryParse(firstNumber, out float first) && float.TryParse(secondNumber, out float second))
+            if(float.TryParse(leftNumber, out float first) && float.TryParse(rightNumber, out float second))
             {
-                switch (act)
+                switch (actionSymbol)
                 {
                     case '+':
                         return first + second;
@@ -161,7 +163,6 @@ namespace CalculatorAPI
                 return -1;
             }
         }
-
         private string NumberToString(float number)
         {
             if(number == 0)
@@ -173,11 +174,10 @@ namespace CalculatorAPI
                 return number.ToString(".##");
             }
         }
-
-        public bool IsFinish(string exp)
+        public bool IsCalculatingFinish(string exp)
         {
-            var lastActIndex = GetLastActSymIndex(exp);
-            var firstActIndex = GetFirstActSymIndex(exp);
+            var lastActIndex = GetStartIndexOfLastNumber(exp);
+            var firstActIndex = GetEndIndexOfFirstNumber(exp);
             if(lastActIndex == firstActIndex && firstActIndex == 0)
             {
                 return true;
