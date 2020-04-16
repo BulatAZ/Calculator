@@ -1,4 +1,4 @@
-# CalculatorWPF
+# Calculator
 
 Status of Last Deployment:<br>
 <img scr="https://github.com/BulatAZ/Calculator/workflows/run_unit_tests/badge.svg?brange=master"><br>
