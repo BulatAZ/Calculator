@@ -18,10 +18,10 @@ jobs:
    
     - uses: actions/checkout@v2
       
-    - name: Items
+    - name: Items list
       run: dir
       
-    - name: Setup .NET 4.7.2
+    - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.101 #4.7.3081.0
@@ -29,8 +29,8 @@ jobs:
     - name: Install dependencies
       run: |
           dotnet restore
-          dotnet add ./Calculator/DesktopApp. package Microsoft.CodeAnalysis
-          dotnet add Tests package MSTest.TestAdapter
+          dotnet add Calculator/DesktopApp package Microsoft.CodeAnalysis
+          dotnet add CalculatorTests/Tests package MSTest.TestAdapter
                  
       
     - name: Build
