@@ -31,10 +31,9 @@ jobs:
         dotnet-version: 3.1.101 #4.7.3081.0
       
     - name: Install dependencies
-      run: |
-          dotnet restore
-          dotnet add D:/a/Calculator/Calculator/Calculator/DesktopApp.csproj package Microsoft.CodeAnalysis
-          dotnet add ./CalculatorTests/Tests.csproj package MSTest.TestAdapter
+      run: dotnet restore
+          #dotnet add D:/a/Calculator/Calculator/Calculator/DesktopApp.csproj package Microsoft.CodeAnalysis
+          #dotnet add ./CalculatorTests/Tests.csproj package MSTest.TestAdapter
                  
       
     - name: Build
