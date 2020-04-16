@@ -28,7 +28,10 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 5.0.0 # 3.1.101 #4.7.3081.0
+        dotnet-version: 3.1.101 #4.7.3081.0
+        
+    - name: pack
+      run: nuget restore Calculator.sln
       
     - name: Install dependencies
       run: dotnet restore
