@@ -72,7 +72,7 @@ namespace CalculatorTests
             var calc = new CalculateExpression();
 
             //Action
-            var reternedIndex = calc.GetLastActSymIndex(expression);
+            var reternedIndex = calc.GetStartIndexOfLastNumber(expression);
 
             //Assert
             Assert.AreEqual(index, reternedIndex);
@@ -86,7 +86,7 @@ namespace CalculatorTests
             var calc = new CalculateExpression();
 
             //Action
-            var reternedIndex = calc.GetLastActSymIndex(expression);
+            var reternedIndex = calc.GetStartIndexOfLastNumber(expression);
 
             //Assert
             Assert.AreEqual(-1, reternedIndex);
@@ -100,7 +100,7 @@ namespace CalculatorTests
             var calc = new CalculateExpression();
 
             //Action
-            var reternedIndex = calc.GetLastActSymIndex(expression);
+            var reternedIndex = calc.GetStartIndexOfLastNumber(expression);
 
             //Assert
             Assert.AreEqual(-1, reternedIndex);
@@ -147,7 +147,7 @@ namespace CalculatorTests
             var calc = new CalculateExpression();
 
             //Action
-            var reternedIndex = calc.GetFirstActSymIndex(expression);
+            var reternedIndex = calc.GetEndIndexOfFirstNumber(expression);
 
             //Assert
             Assert.AreEqual(index, reternedIndex);
