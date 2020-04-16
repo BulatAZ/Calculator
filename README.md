@@ -1,7 +1,7 @@
 # Calculator
 
 Status of Last Deployment:<br>
-<img src="https://github.com/BulatAZ/Calculator/workflows/run_unit_tests/badge.svg?brange=master"><br>
+<img src="https://github.com/BulatAZ/Calculator/workflows/Unit_tests/badge.svg?brange=master"><br>
 
 This is my calculator wrote on C# (WPF)
 In the future i will connect it with postgresql server and some frontend project. This project will be lake API for calculating.
