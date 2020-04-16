@@ -33,8 +33,8 @@ jobs:
     - name: Install dependencies
       run: |
           dotnet restore
-          dotnet add Calculator/DesktopApp package Microsoft.CodeAnalysis
-          dotnet add CalculatorTests/Tests package MSTest.TestAdapter
+          dotnet add D:/a/Calculator/Calculator/Calculator/DesktopApp.csproj package Microsoft.CodeAnalysis
+          dotnet add ./CalculatorTests/Tests.csproj package MSTest.TestAdapter
                  
       
     - name: Build
