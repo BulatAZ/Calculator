@@ -18,6 +18,9 @@ jobs:
    
     - uses: actions/checkout@v2
       
+    - name: Items
+      run: ls -la
+      
     - name: Setup .NET 4.7.2
       uses: actions/setup-dotnet@v1
       with:
@@ -28,7 +31,7 @@ jobs:
     
     - name: Install other packages
       run: |
-          dotnet add DesktopApp package Microsoft.CodeAnalysis
+          dotnet add ./Calculator/DesktopApp. package Microsoft.CodeAnalysis
           dotnet add Tests package MSTest.TestAdapter
           
       
