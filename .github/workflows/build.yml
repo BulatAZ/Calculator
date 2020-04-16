@@ -25,6 +25,12 @@ jobs:
       
     - name: Install dependencies
       run: dotnet restore
+    
+    - name: Install other packages
+      run: |
+          dotnet add package Microsoft.CodeAnalysis
+          dotnet add package MSTest.TestAdapter
+          
       
     - name: Build
       run: dotnet build --configuration Release #--no-restore
