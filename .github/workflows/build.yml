@@ -28,8 +28,8 @@ jobs:
     
     - name: Install other packages
       run: |
-          dotnet add package Microsoft.CodeAnalysis
-          dotnet add package MSTest.TestAdapter
+          dotnet add Calculator.sln package Microsoft.CodeAnalysis
+          dotnet add Calculator.sln package MSTest.TestAdapter
           
       
     - name: Build
