@@ -67,14 +67,7 @@
     <Compile Include="ExpressionEditor.cs" />
     <Compile Include="APIConnectors\Interfaces\ICalculate.cs" />
     <Compile Include="Expression.cs" />
-    <Compile Include="GameAskMe.xaml.cs">
-      <DependentUpon>GameAskMe.xaml</DependentUpon>
-    </Compile>
     <Compile Include="APIConnectors\Interfaces\IEditTextBox.cs" />
-    <Page Include="GameAskMe.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -83,6 +76,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Handlers\KeyPressHandler.cs" />
+    <Compile Include="Handlers\MouseClickHandler.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
