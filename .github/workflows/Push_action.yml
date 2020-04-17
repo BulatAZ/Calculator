@@ -27,6 +27,9 @@ jobs:
       
     - name: setup MSBuild
       uses: warrenbuckley/Setup-MSBuild@v1
+    
+    - name: msbuild
+      run: msbuild Calculator.sln -p:Configuration=Release
       
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
@@ -43,9 +46,9 @@ jobs:
                  
       
     - name: Build
-      run: dotnet build --configuration Release #--no-restore
+      run: dotnet build --configuration Release --no-restore
     - name: Test
-      run: dotnet test #--no-restore --verbosity normal
+      run: dotnet test --no-restore --verbosity normal
     
   #UnitTest:
     #runs-on: [windows-latest]
