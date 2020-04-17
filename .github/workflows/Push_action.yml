@@ -1,42 +1,54 @@
 
-name: Unit_tests
+name: Build_and_unit_test
 
 on:
   push:
-    branches: [ master ]
+    branches: 
+      - master 
+      - Develop 
   pull_request:
-    branches: [ master ]
+    branches:
+      - master     
 
 jobs:
   
-  build:
-   
+  build:  
     runs-on: [windows-latest]
-
    
     steps:
    
     - uses: actions/checkout@v2
       
-    - name: Items list
-      run: dir
+    - name: Nuget setup
+      uses: warrenbuckley/Setup-Nuget@v1
+    
+    - name: packages nuget
+      run: nuget restore Calculator.sln
+      
+    - name: setup MSBuild
+      uses: warrenbuckley/Setup-MSBuild@v1
+    
+    - name: msbuild
+      run: msbuild Calculator.sln -p:Configuration=Release
       
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.101 #4.7.3081.0
+        
+    #- name: pack
+     # run: nuget restore Calculator.sln
       
     - name: Install dependencies
-      run: |
-          dotnet restore
-          dotnet add D:/a/Calculator/Calculator/Calculator/DesktopApp.csproj package Microsoft.CodeAnalysis
-          dotnet add ./CalculatorTests/Tests.csproj package MSTest.TestAdapter
+      run: dotnet restore
+          #dotnet add D:/a/Calculator/Calculator/Calculator/DesktopApp.csproj package Microsoft.CodeAnalysis
+          #dotnet add ./CalculatorTests/Tests.csproj package MSTest.TestAdapter
                  
       
-    - name: Build
-      run: dotnet build --configuration Release #--no-restore
+   # - name: Build
+    #  run: dotnet build --configuration Release --no-restore
     - name: Test
-      run: dotnet test #--no-restore --verbosity normal
+      run: dotnet test --no-restore --verbosity normal
     
   #UnitTest:
     #runs-on: [windows-latest]

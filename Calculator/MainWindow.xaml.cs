@@ -1,5 +1,6 @@
 ﻿
 using DesktopApp.APIConnectors;
+using DesktopApp.Handlers;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,47 +14,68 @@ namespace DesktopApp
     {
         private readonly ICalculate<float> Calc = new Calculator();
         private readonly IEditTextBox TextBoxEditor = new ControlsTextEditor();
+        private readonly KeyPressHandler KeyPress = new KeyPressHandler();
+        private readonly MouseClickHandler MouseClick = new MouseClickHandler();
+        
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void btn_AC_Click(object sender, RoutedEventArgs e)
-        {
-            txtConsole.Text = string.Empty;
-        }
-
-        private void btn_delete_Click(object sender, RoutedEventArgs e)
-        {
-            TextBoxEditor.DeleteLastSymbol(txtConsole);          
-        }
-
-        private void btn_result_Click(object sender, RoutedEventArgs e)
-        {
-            var result = Calc.GetResult(txtConsole.Text);
-            txtConsole.Text = result.ToString();
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var btn = new Button();
-            try
+            if (MouseClick.TryParseToCalculatorButtonValue(sender, out string buttonValue))
             {
-                btn = (Button)sender;
-            }
-            catch (Exception ex)
-            {
-                //TO DO
-                // write log
-                MessageBox.Show("Error" + ex.Message);
-            }
-            TextBoxEditor.AddSymbolToText(txtConsole, btn.Content.ToString());
+                AnswerToButtonEvent(buttonValue);
+            }           
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            var dd = new GameAskMe();
-            dd.Show();
+            if (KeyPress.TryParseToCalculatorButtonValue(e, out string buttonValue))
+            {
+                AnswerToButtonEvent(buttonValue);
+            }
+        }
+
+        private void AnswerToButtonEvent(string buttonValue)
+        {
+            if (string.IsNullOrWhiteSpace(buttonValue))
+            {
+                return;
+            }
+            switch (buttonValue)
+            {
+                case "1":
+                case "2":
+                case "3":
+                case "4":
+                case "5":
+                case "6":
+                case "7":
+                case "8":
+                case "9":
+                case "0":
+                case "+":
+                case "-":
+                case "*":
+                case "/":
+                    TextBoxEditor.AddSymbolToText(txtConsole, buttonValue);
+                    break;
+                case "Del":
+                    TextBoxEditor.DeleteLastSymbol(txtConsole);
+                    break;
+                case "=":
+                    var result = Calc.GetResult(txtConsole.Text);
+                    txtConsole.Text = result.ToString();
+                    break;
+                case "AC":
+                    txtConsole.Text = string.Empty;
+                    break;             
+                default:
+                    break;
+
+            }
         }
     }
 }

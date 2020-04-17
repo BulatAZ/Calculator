@@ -5,27 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesktopApp"
         mc:Ignorable="d"
-        Title="Calculator ver 1.0" Height="291.35" Width="263.525" WindowStartupLocation="CenterScreen">
-    <Grid Margin="0,0,16,10" >
-        <TextBox Name="txtConsole" IsReadOnly="True" Margin="19,85,0,0" Text="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="134"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="19,37,0,0" TextWrapping="Wrap" Text="CALCULATOR" VerticalAlignment="Top" Width="113"/>
-        <Button Content="1" Name="btn_1" HorizontalAlignment="Left" Margin="18,122,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="Button_Click"/>
-        <Button Content="2" Name="btn_2" HorizontalAlignment="Left" Margin="53,122,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="Button_Click"/>
-        <Button Content="3" Name="btn_3" HorizontalAlignment="Left" Margin="88,122,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="Button_Click"/>
-        <Button Content="4" Name="btn_4" HorizontalAlignment="Left" Margin="18,147,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="Button_Click"/>
-        <Button Content="5" Name="btn_5" HorizontalAlignment="Left" Margin="53,147,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="Button_Click"/>
-        <Button Content="6" Name="btn_6" HorizontalAlignment="Left" Margin="88,147,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="Button_Click"/>
-        <Button Content="7" Name="btn_7" HorizontalAlignment="Left" Margin="18,172,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="Button_Click"/>
-        <Button Content="8" Name="btn_8" HorizontalAlignment="Left" Margin="53,172,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="Button_Click"/>
-        <Button Content="9" Name="btn_9" HorizontalAlignment="Left" Margin="88,172,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="Button_Click"/>
-        <Button Content="0" Name="btn_0" HorizontalAlignment="Left" Margin="53,197,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="Button_Click"/>
-        <Button Content="+" Name="btn_plus" HorizontalAlignment="Left" Margin="123,122,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="Button_Click"/>
-        <Button Content="-" Name="btn_minus" HorizontalAlignment="Left" Margin="123,147,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="Button_Click"/>
-        <Button Content="*" Name="btn_multiplication" HorizontalAlignment="Left" Margin="123,172,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="Button_Click"/>
-        <Button Content="/" Name="btn_division" HorizontalAlignment="Left" Margin="123,197,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="Button_Click"/>
-        <Button Content="AC" Name="btn_AC" HorizontalAlignment="Left" Margin="18,197,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="btn_AC_Click"/>
-        <Button Content="Del" Name="btn_delete" HorizontalAlignment="Left" Margin="88,197,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="btn_delete_Click"/>
-        <Button Content="=" Name="btn_equal" HorizontalAlignment="Left" Margin="158,197,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="btn_result_Click"/>
-        <Button Content="nextWindow" HorizontalAlignment="Left" Margin="142,10,0,0" VerticalAlignment="Top" Width="91" Click="Button_Click_1"/>
+        Title="Calculator ver 1.0" Height="326.017" Width="336.858" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown">
+    <Grid Margin="10,10,15.667,10" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="123*"/>
+            <ColumnDefinition Width="118*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox Name="txtConsole" IsReadOnly="True" Margin="48,92,0,0" Text="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="181" Grid.ColumnSpan="2"/>
+        <Button Content="1" Name="btn_1" HorizontalAlignment="Left" Margin="48,136,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="Button_Click" RenderTransformOrigin="0.596,-1.402"/>
+        <Button Content="2" Name="btn_2" HorizontalAlignment="Left" Margin="83,136,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="Button_Click"/>
+        <Button Content="3" Name="btn_3" HorizontalAlignment="Left" Margin="118,136,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="Button_Click" Grid.ColumnSpan="2"/>
+        <Button Content="4" Name="btn_4" HorizontalAlignment="Left" Margin="48,161,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="Button_Click"/>
+        <Button Content="5" Name="btn_5" HorizontalAlignment="Left" Margin="83,161,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="Button_Click"/>
+        <Button Content="6" Name="btn_6" HorizontalAlignment="Left" Margin="118,161,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="Button_Click" Grid.ColumnSpan="2"/>
+        <Button Content="7" Name="btn_7" HorizontalAlignment="Left" Margin="48,186,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="Button_Click"/>
+        <Button Content="8" Name="btn_8" HorizontalAlignment="Left" Margin="83,186,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="Button_Click"/>
+        <Button Content="9" Name="btn_9" HorizontalAlignment="Left" Margin="118,186,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="Button_Click" Grid.ColumnSpan="2"/>
+        <Button Content="0" Name="btn_0" HorizontalAlignment="Left" Margin="83,211,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="Button_Click"/>
+        <Button Content="+" Name="btn_plus" HorizontalAlignment="Left" Margin="8.667,141,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="Button_Click" Grid.Column="1"/>
+        <Button Content="-" Name="btn_minus" HorizontalAlignment="Left" Margin="8.667,166,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="Button_Click" Grid.Column="1"/>
+        <Button Content="*" Name="btn_multiplication" HorizontalAlignment="Left" Margin="8.667,191,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="Button_Click" Grid.Column="1"/>
+        <Button Content="/" Name="btn_division" HorizontalAlignment="Left" Margin="8.667,216,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="Button_Click" Grid.Column="1"/>
+        <Button Content="AC" Name="btn_AC" HorizontalAlignment="Left" Margin="48,211,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="Button_Click"/>
+        <Button Content="Del" Name="btn_delete" HorizontalAlignment="Left" Margin="118,211,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="Button_Click" Grid.ColumnSpan="2"/>
+        <Button Content="=" Name="btn_equal" HorizontalAlignment="Left" Margin="43.667,216,0,0" VerticalAlignment="Top" Width="30" Height="20" Click="Button_Click" Grid.Column="1"/>
     </Grid>
 </Window>
