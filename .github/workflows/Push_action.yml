@@ -45,8 +45,8 @@ jobs:
           #dotnet add ./CalculatorTests/Tests.csproj package MSTest.TestAdapter
                  
       
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
+   # - name: Build
+    #  run: dotnet build --configuration Release --no-restore
     - name: Test
       run: dotnet test --no-restore --verbosity normal
     
