@@ -66,7 +66,7 @@ namespace DesktopApp.Handlers
                     buttonValue = "-";
                     return true;
                 case "Del":
-                    buttonValue = "del";
+                    buttonValue = "Del";
                     return true;
                 case "=":
                     buttonValue = "=";

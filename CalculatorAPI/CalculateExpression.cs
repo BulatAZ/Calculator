@@ -3,18 +3,16 @@
 namespace CalculatorAPI
 {
     public class CalculateExpression
-    {       
-        private readonly List<char> ActionSymbols = new List<char>()
-        {
-            '/','*','+','-'
-        };
+    {
+        ReferenceData Reference = new ReferenceData();
+      
         public float GetResult(string expression)
-        {
-            if (string.IsNullOrWhiteSpace(expression))
+        {           
+            if (!ExpressionChecker.IsCorrect(expression))
             {
-                return 0;
+                return -1;
             }
-
+            
             expression = GetCalculatedExpression(expression);          
 
             if (float.TryParse(expression, out float result))
@@ -29,7 +27,7 @@ namespace CalculatorAPI
         }
         public string GetCalculatedExpression(string exp)
         {
-            foreach (var action in ActionSymbols)
+            foreach (var action in Reference.ActionSymbols)
             {
                 var actionInd = exp.IndexOf(action);
                 while (actionInd > -1)
@@ -49,6 +47,7 @@ namespace CalculatorAPI
             }
             return exp;
         }
+
         public string GetExpWithCalculatingOneOperation(string expression, int actionInd)
         {
             if (string.IsNullOrWhiteSpace(expression))
@@ -90,7 +89,7 @@ namespace CalculatorAPI
                 return -1;
             }
             int actionSymbolIndexInFrontOfLastNumber = -1;
-            foreach (var symbol in ActionSymbols)
+            foreach (var symbol in Reference.ActionSymbols)
             {
                 var index = exp.LastIndexOf(symbol);
                 if (index > actionSymbolIndexInFrontOfLastNumber)
@@ -124,7 +123,7 @@ namespace CalculatorAPI
                 return -1;
             }
             var EndIndexOfFirstNumber = exp.Length;
-            foreach (var ch in ActionSymbols)
+            foreach (var ch in Reference.ActionSymbols)
             {
                 var index = exp.IndexOf(ch);
                 if (index < EndIndexOfFirstNumber && index != -1)
