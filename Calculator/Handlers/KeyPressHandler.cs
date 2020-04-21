@@ -53,7 +53,7 @@ namespace DesktopApp.Handlers
                     buttonValue = "-";
                     return true;
                 case "Back":
-                    buttonValue = "del";
+                    buttonValue = "Del";
                     return true;
                 case "Enter":
                     buttonValue = "=";

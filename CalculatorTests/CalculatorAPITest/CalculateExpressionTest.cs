@@ -31,21 +31,20 @@ namespace CalculatorTests
         }
 
         [TestMethod]
-        [DataRow(null)]
-
-        public void GetResult_WhenExpressionIsNull_ReturnZero(string expression)
+        public void GetResult_WhenExpressionIsNull_ReturnMinusOne()
         {
             //Arrange
-           var calc = new CalculateExpression();
+            var calc = new CalculateExpression();
+            string expression = null;
 
             //Action
             var calculatedResult = calc.GetResult(expression);
 
             //Assert
-            Assert.AreEqual(calculatedResult, 0);
+            Assert.AreEqual(calculatedResult, -1);
         }
 
-        [TestMethod]   
+        [TestMethod]
         [DataRow("58+578/2", 2, "58")] // When left number from index is first
         [DataRow("58+578/2", 6, "578")] // When left number from index in middle
         [DataRow("58+578-2*8", 8, "2")] // When left number from index is last
@@ -53,7 +52,7 @@ namespace CalculatorTests
         public void GetLeftNumber_WhenLeftNumberIsFirstMiddleLast_ReturnLeftNumber(string expression, int index, string leftNumber)
         {
             //Arrange
-            var calc = new CalculateExpression();    
+            var calc = new CalculateExpression();
 
             //Action
             var returnedLeftNumber = calc.GetLeftNumber(expression, index);
@@ -63,8 +62,8 @@ namespace CalculatorTests
         }
 
         [TestMethod]
-        [DataRow("58+578/2", 6)] 
-        [DataRow("58+578", 2)] 
+        [DataRow("58+578/2", 6)]
+        [DataRow("58+578", 2)]
 
         public void GetLastActSymIndex_WhenActionSymbolExist_ReturnRightIndex(string expression, int index)
         {
@@ -79,7 +78,7 @@ namespace CalculatorTests
         }
 
         [TestMethod]
-        [DataRow("585782")]      
+        [DataRow("585782")]
         public void GetLastActSymIndex_WhenActionSymbolNotExist_ReturnMinusOne(string expression)
         {
             //Arrange
@@ -124,7 +123,7 @@ namespace CalculatorTests
         }
 
         [TestMethod]
-        [DataRow(null)]      
+        [DataRow(null)]
         public void GetRightNumber_WhenExpIsNull_ReturnNull(string expression)
         {
             //Arrange
