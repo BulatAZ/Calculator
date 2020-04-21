@@ -8,7 +8,8 @@ on:
       - Develop 
   pull_request:
     branches:
-      - master     
+      - master 
+      - Develop  
 
 jobs:
   
