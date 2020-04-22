@@ -55,7 +55,7 @@ namespace DesktopApp.Handlers
                 case "Back":
                     buttonValue = "Del";
                     return true;
-                case "Enter":
+                case "Return": // Enter
                     buttonValue = "=";
                     return true;
                 case "Multiply":
@@ -64,7 +64,7 @@ namespace DesktopApp.Handlers
                 case "Divide":
                     buttonValue = "/";
                     return true;
-                default:
+                default:                    
                     buttonValue = null;
                     return false;
             }
